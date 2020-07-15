@@ -27,7 +27,7 @@
   * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)-->
+* [Usage](#usage)
 * [Roadmap](#roadmap)
 * [Deployment](#deployment)
 * [Contributing](#contributing)
@@ -126,8 +126,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 Robson Azevedo - [@GitHub](https://github.com/robsonazevedo) [@LinkedIn](https://www.linkedin.com/in/robson-azevedo/) [@Microsoft](https://docs.microsoft.com/pt-br/users/robson-martins-azevedo) [@UiPath](https://connect.uipath.com/community/profile/robson-azevedo)
-
-Andressa Bastos - [@GitHub](https://github.com/andressa-armb) [@LinkedIn](https://www.linkedin.com/in/andressa-rmb/)
 
 Project Link: [Project](#)
 
