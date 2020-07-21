@@ -41,3 +41,4 @@ desktop.ini
 *.local
 /vb/ConsultaCotacaoMoedas/temp
 /vb/ConsultaCotacaoMoedas/.objects
+/csharp/ConsultaCotacaoMoedas/.objects
