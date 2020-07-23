@@ -1,6 +1,6 @@
 {
   "name": "ConsultaCotacaoMoedas",
-  "description": "Consulta de cotações de moedas no banco central do Brasil",
+  "description": "Consulta de cotacoes de moedas no banco central do Brasil.",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.9.0-preview]",
