@@ -1,15 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CheckMail" this:CheckMail.In_DiretorioAnexo="temp\data" this:CheckMail.In_DiretorioMoedas="temp\data\moedas.xlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CheckMail" this:CheckMail.In_DiretorioAnexo="temp\data" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:str="clr-namespace:System.Text.RegularExpressions;assembly=System" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="Out_DataInicial" Type="OutArgument(x:String)" />
     <x:Property Name="Out_DataFinal" Type="OutArgument(x:String)" />
     <x:Property Name="In_DiretorioAnexo" Type="InArgument(x:String)" />
-    <x:Property Name="In_DiretorioMoedas" Type="InArgument(x:String)" />
     <x:Property Name="Out_DTmoedas" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>824,1917.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1104,1917.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>CheckMail_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -58,6 +57,10 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -66,7 +69,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Processo: Verifica E-mail Contação&#xA;Detalhes: Verifica e-mail atrás da solictação de consulta de E-mail&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Check Mail" sap:VirtualizedContainerService.HintSize="637.6,1752.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Sequence: Verifica E-mail Contação&#xA;Detalhes: Verifica e-mail atrás da solictação de consulta de E-mail&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Check Mail" sap:VirtualizedContainerService.HintSize="637.6,1752.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Mensagens" />
       <Variable x:TypeArguments="x:String" Name="CorpoEmail" />
@@ -171,7 +174,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="Le a planilha anexada no e-mail" DisplayName="Excel Application Scope Moedas" sap:VirtualizedContainerService.HintSize="596,293.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[In_DiretorioMoedas]">
+    <ui:ExcelApplicationScope Password="{x:Null}" sap2010:Annotation.AnnotationText="Le a planilha anexada no e-mail" DisplayName="Excel Application Scope Moedas" sap:VirtualizedContainerService.HintSize="596,293.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Visible="False" WorkbookPath="[In_DiretorioAnexo + &quot;\moedas.xlsx&quot;]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>

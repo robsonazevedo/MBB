@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>824,614.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1104,1185.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IniciaAplicativos_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -55,10 +55,11 @@
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Processo: Inicia Aplicativos&#xA;&#xA;Detalhes: Inicia os aplicativos e configurações necessárias para automação&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Inicia Aplicativos" sap:VirtualizedContainerService.HintSize="200,192.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Sequence: Inicia Aplicativos&#xA;&#xA;Detalhes: Inicia os aplicativos e configurações necessárias para automação&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Inicia Aplicativos" sap:VirtualizedContainerService.HintSize="794.4,1020.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="DiretorioExiste" />
     </Sequence.Variables>
@@ -92,7 +93,7 @@
         <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder Cotacoes" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[In_DiretorioCotacoes]" />
       </If.Else>
     </If>
-    <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Abre o Google Chrome no site do Bacen" BrowserType="Chrome" DisplayName="Open Browser Chrome Pagina Bacen" sap:VirtualizedContainerService.HintSize="752.8,96.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[In_UrlBacen]">
+    <ui:OpenBrowser NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Abre o Google Chrome no site do Bacen" BrowserType="Chrome" CommunicationMethod="Native" DisplayName="Open Browser Chrome Pagina Bacen" Hidden="True" sap:VirtualizedContainerService.HintSize="752.8,248.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[In_UrlBacen]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
