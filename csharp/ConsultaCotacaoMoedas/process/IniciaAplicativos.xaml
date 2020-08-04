@@ -1,12 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="IniciaAplicativos" this:IniciaAplicativos.In_UrlBacen="https://www4.bcb.gov.br/pec/taxas/port/ptaxnpesq.asp?frame=1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="IniciaAplicativos" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_UrlBacen" Type="InArgument(x:String)" />
-    <x:Property Name="In_DiretorioCotacoes" Type="InArgument(x:String)" />
+    <x:Property Name="In_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1104,1185.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1104,1156</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IniciaAplicativos_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -34,7 +33,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="16">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="32">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -51,6 +50,11 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -59,7 +63,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Sequence: Inicia Aplicativos&#xA;&#xA;Detalhes: Inicia os aplicativos e configurações necessárias para automação&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Inicia Aplicativos" sap:VirtualizedContainerService.HintSize="794.4,1020.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Inicia os aplicativos que serão automatizados." DisplayName="Inicia Aplicativos" sap:VirtualizedContainerService.HintSize="794.4,991.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="DiretorioExiste" />
     </Sequence.Variables>
@@ -69,8 +73,14 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:PathExists DisplayName="Path Exists Cotacoes" Exists="[DiretorioExiste]" sap:VirtualizedContainerService.HintSize="752.8,90.4" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[In_DiretorioCotacoes]" PathType="Folder" />
-    <If sap2010:Annotation.AnnotationText="Verifica a existênca do diretório que armazena as cotações baixadas do site do banco central para criar ou recriar" Condition="[DiretorioExiste]" DisplayName="If Pasta Cotacoes existe" sap:VirtualizedContainerService.HintSize="752.8,416.8" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:PathExists sap2010:Annotation.AnnotationText="Verifica se o diretório de cotações existe." DisplayName="Path Exists Cotacoes" Exists="[DiretorioExiste]" sap:VirtualizedContainerService.HintSize="752.8,121.6" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[In_Config(&quot;DiretorioCotacoes&quot;).ToString]" PathType="Folder">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:PathExists>
+    <If sap2010:Annotation.AnnotationText="Cria ou recria o diretório de cotações caso exista." Condition="[DiretorioExiste]" DisplayName="If Pasta Cotacoes Existe" sap:VirtualizedContainerService.HintSize="752.8,416.8" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -79,21 +89,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="375.2,236" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Recriar Diretorio Cotacoes" sap:VirtualizedContainerService.HintSize="375.2,236" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete moedas" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[In_DiretorioCotacoes]" />
-          <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder Cotacoes" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[In_DiretorioCotacoes]" />
+          <ui:Delete ContinueOnError="{x:Null}" DisplayName="Delete moedas" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[In_Config(&quot;DiretorioCotacoes&quot;).ToString]" />
+          <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder Cotacoes" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[In_Config(&quot;DiretorioCotacoes&quot;).ToString]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder Cotacoes" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[In_DiretorioCotacoes]" />
+        <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder Cotacoes" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[In_Config(&quot;DiretorioCotacoes&quot;).ToString]" />
       </If.Else>
     </If>
-    <ui:OpenBrowser NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Abre o Google Chrome no site do Bacen" BrowserType="Chrome" CommunicationMethod="Native" DisplayName="Open Browser Chrome Pagina Bacen" Hidden="True" sap:VirtualizedContainerService.HintSize="752.8,248.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[In_UrlBacen]">
+    <ui:OpenBrowser NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Abre o Google Chrome no site do Bacen." BrowserType="Chrome" CommunicationMethod="Native" DisplayName="Open Browser Chrome Pagina Bacen" Hidden="True" sap:VirtualizedContainerService.HintSize="752.8,248.8" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[In_Config(&quot;UrlBacen&quot;).ToString]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>

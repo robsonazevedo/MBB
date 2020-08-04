@@ -1,11 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ConverteCsvParaXlsx" this:ConverteCsvParaXlsx.In_DiretorioCotacoes="[Environment.CurrentDirectory + &quot;\temp\cotacoes&quot;]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ConverteCsvParaXlsx" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_DiretorioCotacoes" Type="InArgument(x:String)" />
+    <x:Property Name="In_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1104,1256</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1104,1208</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ConverteCsvParaXlsx_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="42">
@@ -59,7 +59,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sequence: Converte Csv para Xlsx&#xA;&#xA;Detalhes: Convette arquivos Csv para Xlsx&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Converte Csv para Xlsx" sap:VirtualizedContainerService.HintSize="552,1091.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Convette arquivos Csv para Xlsx.&#xA;" DisplayName="Converte Csv para Xlsx" sap:VirtualizedContainerService.HintSize="552,1043.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="Arquivos" />
     </Sequence.Variables>
@@ -74,7 +74,7 @@
         <OutArgument x:TypeArguments="s:String[]">[Arquivos]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(In_DiretorioCotacoes)]</InArgument>
+        <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(In_Config("DiretorioCotacoes").ToString)]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Percorre os arquivos de cotação de moedas para converter o formato csv para xlsx" DisplayName="For Each Arquivos" sap:VirtualizedContainerService.HintSize="510.4,806.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Arquivos]">

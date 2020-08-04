@@ -1,12 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SiteAspose" this:SiteAspose.In_UrlAspose="https://products.aspose.app/cells/merger" this:SiteAspose.In_DiretorioCotacoes="[Environment.CurrentDirectory + &quot;\temp\cotacoes&quot;]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SiteAspose" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="In_UrlAspose" Type="InArgument(x:String)" />
-    <x:Property Name="In_DiretorioCotacoes" Type="InArgument(x:String)" />
+    <x:Property Name="In_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1104,3697.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1104,3633.6</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SiteAspose_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,7 +64,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Sequence: Unifica Planilhas&#xA;&#xA;Detalhes: Realiza upload das planilhas de cotação no site Aspose e download de uma unica planilha com as cotacoes unificadas.&#xA;&#xA;Autor: Robson Azevedo" DisplayName="Site Aspose" sap:VirtualizedContainerService.HintSize="475.2,3532.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Realiza upload das planilhas de cotação no site Aspose e realiza download de uma unica planilha com as cotacoes unificadas." DisplayName="Site Aspose" sap:VirtualizedContainerService.HintSize="475.2,3468.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="Arquivos" />
     </Sequence.Variables>
@@ -87,7 +86,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[In_UrlAspose]" />
+            <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="[In_Config(&quot;UrlAspose&quot;).ToString]" />
           </Sequence>
         </ActivityAction>
       </ui:BrowserScope.Body>
@@ -145,7 +144,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Seleciona planilhas  para fazer Upload no site Aspose" DisplayName="Attach Window Upload" sap:VirtualizedContainerService.HintSize="433.6,749.6" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="604e4988ce6439cfed4f455dfa663888" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Abrir' /&gt;">
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Seleciona planilhas  para fazer Upload no site Aspose." DisplayName="Attach Window Upload" sap:VirtualizedContainerService.HintSize="433.6,749.6" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="604e4988ce6439cfed4f455dfa663888" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Abrir' /&gt;">
       <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -158,7 +157,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into DiretorioCotacoes" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[In_DiretorioCotacoes+ &quot;[k(enter)]&quot;]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into DiretorioCotacoes" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[Environment.CurrentDirectory +  &quot;\&quot; + In_Config(&quot;DiretorioCotacoes&quot;).ToString  + &quot;[k(enter)]&quot;]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="716e9a8d-2413-4afc-8c58-ed4d590f639f" InformativeScreenshot="c1cf7008ae46de25d817bbe3fa0ccffb" Selector="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -295,7 +294,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:BrowserScope>
-    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Sala a planilha com as cotacoes unificadas" DisplayName="Attach Window Salvar Como" sap:VirtualizedContainerService.HintSize="433.6,728.8" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="2648153e2aeeeeeec1b5e72970699187" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Salvar como' /&gt;">
+    <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="Sala a planilha com as cotacoes unificadas." DisplayName="Attach Window Salvar Como" sap:VirtualizedContainerService.HintSize="433.6,728.8" sap2010:WorkflowViewState.IdRef="WindowScope_2" InformativeScreenshot="2648153e2aeeeeeec1b5e72970699187" Selector="&lt;wnd app='chrome.exe' cls='#32770' title='Salvar como' /&gt;">
       <ui:WindowScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -307,7 +306,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into DiretorioCotacao" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[In_DiretorioCotacoes + &quot;[k(enter)]&quot;]">
+            <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into DiretorioCotacao" EmptyField="True" sap:VirtualizedContainerService.HintSize="333.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_3" Text="[Environment.CurrentDirectory +  &quot;\&quot; + In_Config(&quot;DiretorioCotacoes&quot;).ToString  + &quot;[k(enter)]&quot;]">
               <ui:TypeInto.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0440dbbf-ae76-46a3-a17f-fecedb4e3d61" InformativeScreenshot="eb9120b2d633f4c0e990357f56cca5f9" Selector="&lt;wnd aaname='Painel do Explorer' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Nome:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;">
                   <ui:Target.TimeoutMS>
@@ -365,7 +364,7 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:WindowScope>
     <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="433.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_2" />
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Fecha aba Aspose no Chrome" BrowserType="Chrome" DisplayName="Attach Browser Chrome Fecha Aba" sap:VirtualizedContainerService.HintSize="433.6,293.6" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="c2b98932afa2b8468b20b4e67cb95b51" Selector="&lt;html app='chrome.exe' title='Merge Excel Online - Free Online Excel Merger' /&gt;">
+    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="Fecha aba Aspose no Chrome." BrowserType="Chrome" DisplayName="Attach Browser Chrome Fecha Aba" sap:VirtualizedContainerService.HintSize="433.6,293.6" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="c2b98932afa2b8468b20b4e67cb95b51" Selector="&lt;html app='chrome.exe' title='Merge Excel Online - Free Online Excel Merger' /&gt;">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
