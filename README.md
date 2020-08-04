@@ -59,6 +59,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 * Lucas Santos - [@GitHub](https://github.com/LucasSilvaDosSantos)
 * Mariana Antunes - [@GitHub](https://github.com/mari-antunes)
 * Reynaldo Azevedo - [@GitHub](https://github.com/RMarttins)
+* Vanessa Helena - [@GitHub](https://github.com/Vanessa-Helena)
 * [Microsoft](https://www.microsoft.com/)
 * [UiPath](https://www.uipath.com/)
 
